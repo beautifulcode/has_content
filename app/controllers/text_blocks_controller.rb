@@ -1,0 +1,3 @@
+class TextBlocksController < AssetsController
+  
+end

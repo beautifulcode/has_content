@@ -1,0 +1,17 @@
+HasContent
+==========
+
+Basic Content management tool to handle assets on pages.
+
+Makes no attempt to offer an admin/user auth solution or advanced features.
+
+Depends on: Friendly_id, Paperclip, ActsAsTree
+
+
+Example
+=======
+
+Page has_many content_mappings which maps to an instance of an Asset of various types such as BasicImage or TextBlock.
+
+
+Copyright (c) 2010 [name of plugin creator], released under the MIT license

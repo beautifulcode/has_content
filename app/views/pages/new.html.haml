@@ -1,0 +1,13 @@
+%h1 New Page
+
+- semantic_form_for(@page, :html => {:class => 'validate'}) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p
+    = form.submit "Create Page", :class => 'button create'
+    = link_to 'Cancel', :back, :class => 'button back'
+
+- content_for :side do
+  %ul
+    %li=link_to "> Manage Pages", pages_path
+    %li=link_to "> Manage Images", images_path
+    %li=link_to "> Manage Text", text_blocks_path

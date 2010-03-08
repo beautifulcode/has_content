@@ -1,0 +1,9 @@
+%h1 Editing Content
+
+- semantic_form_for(@content_mapping, :html => {:multipart => true, :class => 'validate'}) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit 'Update', :class => 'button update'
+
+%p
+  = link_to 'Show', @content_mapping, :class => 'button view'
+  = link_to 'Back', content_mappings_path, :class => 'button back'

@@ -1,0 +1,21 @@
+%dl
+  %dt Page
+  %dd= h @content_mapping.page.title
+  
+  %dt Section
+  %dd= h @content_mapping.section.title
+
+  %dt Asset
+  %dd
+    = h @content_mapping.asset.title
+    %i= "(#{@content_mapping.asset_type.title})"
+    
+  %dt Asset template
+  %dd= h @content_mapping.asset_template
+  %dt Position
+  %dd= h @content_mapping.position
+
+%p
+  = link_to 'Edit', edit_content_mapping_path(@content_mapping)
+  |
+  = link_to 'Back', content_mappings_path

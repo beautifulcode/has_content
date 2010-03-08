@@ -1,0 +1,7 @@
+%h1 New Asset type
+
+- form_for(@asset_type) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit "Create"
+
+%p= link_to 'Back', asset_types_path

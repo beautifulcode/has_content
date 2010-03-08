@@ -1,0 +1,12 @@
+%h1 Pages
+
+%ul#page_tree= render :partial => "tree", :locals => {:page => @page}
+//= sortable_element_reporting_target "page_tree", "moved_page_id", :tree => true, :url => sort_pages_path, :method => :put
+
+%p= link_to 'Create New Page', new_page_path, :class => "create button glossy"
+
+- content_for :side do
+  %ul
+    %li=link_to "> Pages", pages_path
+    %li=link_to "> Images", images_path
+    %li=link_to "> Text", text_blocks_path

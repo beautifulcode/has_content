@@ -1,0 +1,18 @@
+%h1 Listing Page templates
+
+%table
+  %tr
+    %th Title
+    %th File
+    %th Active
+
+  - for page_template in @page_templates
+    %tr
+      %td= h page_template.title
+      %td= h page_template.file
+      %td= h page_template.active
+      %td= link_to 'Show', page_template
+      %td= link_to 'Edit', edit_page_template_path(page_template)
+      %td= link_to 'Destroy', page_template, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New Page template', new_page_template_path

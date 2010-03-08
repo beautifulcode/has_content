@@ -1,0 +1,18 @@
+
+ <%= f.inputs :title, :width, :height %>
+ <fieldset>
+   <ol>
+   <li>
+   <%= f.label :swf, "Upload SWF" %>
+   <%= f.file_field :swf %>
+   <%= @flash_piece.swf.url %>
+  </li>
+  <li>
+   <%= f.label :image, "Alternate Image" %>
+   <%= f.file_field :image %>
+   </li>
+   </ol>
+ </fieldset>
+ <%= f.inputs :flash_vars, :params, :version %>
+
+

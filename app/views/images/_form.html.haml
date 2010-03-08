@@ -1,0 +1,18 @@
+%ul#image_tabs.tabs
+  %li.tab= link_to "Required Info", "#basic"
+  %li.tab= link_to "Options", "#advanced"
+  
+#basic.tab_content
+  - form.inputs :name => "Image Name & File" do
+    = form.input :title
+    = form.input :file
+  
+#advanced.tab_content
+  - form.inputs :name => "Image Options" do 
+    = form.input :page_id, :include_blank => true
+    = form.input :link
+
+:javascript
+  Event.observe(window, 'load', function(){
+    var form_tabs = new Control.Tabs('image_tabs');
+  })

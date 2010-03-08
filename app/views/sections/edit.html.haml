@@ -1,0 +1,9 @@
+%h1 Editing Section
+
+- form_for(@section) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit 'Update', :class => 'button update'
+
+%p
+  = link_to 'Show', @section, :class => 'button view'
+  = link_to 'Cancel', :back, :class => 'button cancel'

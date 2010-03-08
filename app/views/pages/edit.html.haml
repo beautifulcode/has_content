@@ -1,0 +1,17 @@
+%h1 Editing Page
+
+- semantic_form_for(@page, :url => page_path(@page.id), :html => {:class => 'validate'}) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p.form_buttons
+    = form.submit 'Save Changes', :class => 'button update'
+    = link_to '&times; Cancel', :back, :class => 'button back'
+
+  - content_for :context do
+    = render :partial => 'pages/context', :locals => {:form => form}
+    
+
+- content_for :side do
+  %ul
+    %li=link_to "> Pages", pages_path
+    %li=link_to "> Images", images_path
+    %li=link_to "> Text", text_blocks_path

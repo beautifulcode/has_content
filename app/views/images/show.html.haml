@@ -1,0 +1,15 @@
+%h1 Basic Image
+%h2= @basic_image.title
+
+= image_tag @basic_image.file.url
+= image_tag @basic_image.file.url(:full)
+= image_tag @basic_image.file.url(:small)
+= image_tag @basic_image.file.url(:thumb)
+
+%p
+  Currently:
+  = @basic_image.file.url
+  = link_to "Remove Image", 
+
+%p= link_to "Edit Image", edit_basic_image_path(@basic_image)
+%p= link_to "Create Image", new_basic_image_path

@@ -1,0 +1,10 @@
+%dl
+  %dt Title
+  %dd= h @asset_type.title
+  %dt Active
+  %dd= h @asset_type.active
+
+%p
+  = link_to 'Edit', edit_asset_type_path(@asset_type)
+  |
+  = link_to 'Back', asset_types_path

@@ -1,0 +1,9 @@
+%h1 Editing Asset type
+
+- form_for(@asset_type) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit 'Update'
+
+%p
+  = link_to 'Show', @asset_type
+  = link_to 'Back', asset_types_path

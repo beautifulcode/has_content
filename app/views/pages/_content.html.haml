@@ -1,0 +1,18 @@
+
+- @page.sections.each do |section|
+  - section_title = section.title.downcase.underscore
+  .content_section{:class => "section_#{section_title}"}
+    %h2= section.title
+    %ul.content_listing{:id => "section_#{section_title}_content", :style => "min-height: 100px;"}
+      = render :partial => @page.content_for_section(section), :locals => {:section => section}
+
+    - if @page.content_for_section(section).empty?
+      = droppable_content_area(section, section_title) 
+    - else
+      = sortable_element "section_#{section_title}_content", :url => sort_page_section_content_mappings_path(@page, section)
+    
+
+    %br
+    %p= link_to "Add Content to #{section.title}", new_page_section_content_mapping_path(@page.id, section.id), :class => 'button create right'
+
+

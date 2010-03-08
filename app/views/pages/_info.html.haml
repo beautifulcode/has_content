@@ -1,0 +1,24 @@
+.page_info.context_block
+  %h3 Page Details
+  %p
+    %b Page Title:
+    %span.no-break= page.title
+    - if page.parent
+      %br
+      %b Parent:
+      = page.parent.title 
+
+  %b Children:
+  %ul.page_children
+    - page.children.each do |child|
+      %li= link_to child.title, edit_page_path(child.id)
+
+  %p
+    %b Created by:
+    = page.created_by
+    %br
+    = page.created_at.to_s(:long)
+  
+  = link_to "Edit Page Details", edit_page_path(page.id), :class => "button update"
+  
+/ %p= link_to "Add Content to #{page.title} page", new_page_content_mapping_path(page.id), :class => 'button create right'

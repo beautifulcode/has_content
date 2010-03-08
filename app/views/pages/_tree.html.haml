@@ -1,0 +1,17 @@
+- content_tag :li, :id => dom_id(page), :class => "tree_branch #{'closed' unless page.root? }" do
+  .page_row{:class => page_icon(page) }
+    %span.handle
+    %h2.title{:style => 'display: inline'}
+      = content_tag :span, "&lfloor;", :class => 'descendant' unless page.root?
+      = link_to( content_tag( :span, page.title, :class => 'rest_in_place', :attribute => 'title', :url => "/pages/#{page.id}"), page.permalink_path)
+    %span.controls.right
+      = link_to "Edit", edit_page_path(page.id), :class => 'button edit'
+      = link_to "Content", page_content_mappings_path(page.id), :class => 'button edit'
+      = link_to "X", page, :confirm => "Are you sure?", :method => 'delete', :class => 'button delete'
+      = link_to "+", "/pages/#{page.id}/children/new", :class => 'button create'
+  
+  - unless page.children.empty?
+    - content_tag :ul, :class => 'closed' do
+      - page.children.each do |child|
+        = render :partial => "pages/tree", :locals => {:page => child}
+

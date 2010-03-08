@@ -1,0 +1,12 @@
+%dl
+  %dt Title
+  %dd= h @page_template.title
+  %dt File
+  %dd= h @page_template.file
+  %dt Active
+  %dd= h @page_template.active
+
+%p
+  = link_to 'Edit', edit_page_template_path(@page_template)
+  |
+  = link_to 'Back', page_templates_path

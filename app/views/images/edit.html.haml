@@ -1,0 +1,19 @@
+%h1 Editing an Image
+.column{:style => "float: left; width: 130px;"}
+  %p
+    %b Currently:
+  = image_tag(@image.file.url(:thumb))
+.column{:style => "float: left; width: 430px;"}
+  - semantic_form_for( @image, :html => {:multipart => true, :class => 'validate'} ) do |form|
+    = render :partial => 'form', :locals => {:form => form}  
+
+%p.right
+  = link_to 'Cancel', :back, :class => 'button cancel'
+  = form.submit "Update", :class => "button update right"
+
+- content_for :side do
+  %ul
+    %li=link_to "> Pages", pages_path
+    %li=link_to "> Images", images_path
+    %li=link_to "> Text", text_blocks_path
+

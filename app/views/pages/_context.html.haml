@@ -1,0 +1,50 @@
+%h1 Options
+
+
+%ul#tabs_page_context.subsection_tabs.group
+  %li.tab= link_to "Settings", "#page_status"
+  %li.tab= link_to "Advanced", "#page_dev_customizations"
+
+
+  
+#page_status.tab_content.group
+
+  - form.inputs :name => "Status" do
+    = form.input :visible, :label => "Visible (nav/sitemap)"
+    = form.input :active, :label => "Enabled (available)"
+  
+  - unless @page.new_record?
+    - form.inputs :name => "History" do
+      %ol
+        %li
+          %b Created by:
+          = @page.created_by
+          %br
+          = time_ago_in_words(@page.created_at)
+          ago
+          %i= @page.created_at.to_s(:long)
+
+        %li
+          %b Updated by: 
+          = @page.updated_by
+          %br
+          = time_ago_in_words(@page.updated_at)
+          ago
+          %i= link_to 'view', '#', :title => @page.updated_at.to_s(:long)        
+
+
+#page_dev_customizations.tab_content.group
+
+  - form.inputs :name => "Developer Customization (CSS etc)" do
+    = form.input :css_class, :label => "Page CSS"
+    = form.input :nav_item_css_class, :label => "Nav CSS"
+    / = form.input :nav_item_parameters, :label => "Nav Params"
+
+
+
+
+:javascript
+  Event.observe(window, 'load', function(){
+    var context_tabs = new Control.Tabs('tabs_page_context');  
+    console.log(context_tabs)
+  })

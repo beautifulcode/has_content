@@ -1,0 +1,14 @@
+<h1>Editing Flash Piece</h1>
+<script src="/javascripts/swfobject.js" type="text/javascript" charset="utf-8"></script>
+  <%= render :partial => "flash_piece", :locals => {:flash_piece => @flash_piece} %>
+  
+<% semantic_form_for( @flash_piece, :html => {:multipart => true} )do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'form', :locals => {:f => f}  %>
+  <p><%= f.submit "Update" %></p>
+  
+<% end %>
+
+<%= link_to 'Show', @flash_piece %> |
+<%= link_to 'Back', flash_pieces_path %>

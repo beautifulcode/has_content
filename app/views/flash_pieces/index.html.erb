@@ -1,0 +1,30 @@
+<h1>Listing flash_pieces</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th>Params</th>
+    <th>Flash vars</th>
+    <th>Version</th>
+  </tr>
+
+<% for flash_piece in @flash_pieces %>
+  <tr>
+    <td><%=h flash_piece.title %></td>
+    <td><%=h flash_piece.width %></td>
+    <td><%=h flash_piece.height %></td>
+    <td><%=h flash_piece.params %></td>
+    <td><%=h flash_piece.flash_vars %></td>
+    <td><%=h flash_piece.version %></td>
+    <td><%= link_to 'Show', flash_piece %></td>
+    <td><%= link_to 'Edit', edit_flash_piece_path(flash_piece) %></td>
+    <td><%= link_to 'Destroy', flash_piece, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New flash_piece', new_flash_piece_path %>

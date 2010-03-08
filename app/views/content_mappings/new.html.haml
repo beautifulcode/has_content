@@ -1,0 +1,28 @@
+#new_content
+  - if request.xhr?
+    - semantic_remote_form_for(@content_mapping, :update => 'new_content', :html => {:multipart => true, :class => 'validate'}) do |form|
+      = render :partial => 'form', :locals => {:form => form}
+
+      %p.right
+        = form.submit "Add Content", :class => 'button create'
+        = link_to 'Cancel', :back, :class => 'button cancel', :onclick => "this.up().up().hide();"
+
+  - else
+    %h1 New Content
+    - if @asset
+      %h3
+        = "Adding a #{@asset.class.name.titleize}"
+        = " named #{@asset.title}" unless @asset.new_record?
+        = " to #{@page.title}" if @page
+    - semantic_form_for(@content_mapping, :html => {:multipart => true, :class => 'validate'}) do |form|
+      = render :partial => 'form', :locals => {:form => form}
+      %p.right
+        = form.submit "Add Content", :class => 'button create'
+        = link_to 'Cancel', :back, :class => 'button cancel'
+
+
+- content_for :side do
+  - if @page
+    = link_to "> View Page", @page.permalink_path
+    = link_to "> Edit Page", edit_page_path(@page)
+    = link_to "> New Content", new_page_content_mapping_path(@page)  

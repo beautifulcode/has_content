@@ -1,0 +1,25 @@
+<div class="flash_piece">
+
+  <div id="flash_piece_<%= flash_piece.id %>_placeholder">
+    <% unless flash_piece.image.blank? %>
+    <img src="<%= flash_piece.image.url %>" />
+    <% end %>
+
+  </div>
+  <script>
+    if( swfobject ){
+      Event.observe(window, 'load', function(){
+        var flashvars = {<%= flash_piece.flash_vars %>};
+        flashvars.lang = "<%= @locale %>";
+        var params = {<%= flash_piece.params %>};
+        var attributes = {};
+        <%- swf_file = flash_piece.french_swf.url if (@locale == 'fr') && !flash_piece.french_swf.url.include?( 'missing' ) %>
+        <%- swf_file ||= flash_piece.swf.url %>
+        swfobject.embedSWF('<%= swf_file %>', "flash_piece_<%= flash_piece.id %>_placeholder", <%= flash_piece.width %>, <%= flash_piece.height %>, '<%= flash_piece.flash_version %>', "/flash/expressInstall.swf", flashvars, params, attributes);  
+      });
+    }else{
+      
+    }
+  </script>
+
+</div>

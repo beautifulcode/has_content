@@ -1,0 +1,7 @@
+%h1 New Section
+
+- form_for(@section) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p
+    = form.submit "Create", :class => 'button create'
+    = link_to 'Cancel', :back, :class => 'button cancel'

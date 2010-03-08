@@ -1,0 +1,14 @@
+%h1 New Basic Image
+- semantic_form_for( @image, :html => {:multipart => true, :class => 'validate'} )do |form|
+  = render :partial => 'form', :locals => {:form => form}
+
+%p.right
+  = link_to 'Cancel', :back, :class => 'button cancel'
+  = link_to 'Create Image', :back, :class => 'button create right'
+  
+- content_for :side do
+  %ul
+    %li=link_to "> Pages", pages_path
+    %li=link_to "> Images", images_path
+    %li=link_to "> Text", text_blocks_path
+

@@ -1,0 +1,13 @@
+- form.inputs do
+  %li
+    = form.label :title
+    = form.text_field :title
+  %li
+    = form.label :content
+    #content_editor{:style => 'float: left;width: 400px;'}
+      - rich_text = false
+      - if rich_text
+        = form.wysihat_editor :content, :size => "50x5" 
+      - else
+        = text_area :text_block, :content, :size => "100x15"
+  /= form.input :filter, :as => :radio, :collection => [["Markdown", true], ["HAML", false]]

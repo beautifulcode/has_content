@@ -1,0 +1,8 @@
+%p
+  %b Title
+  = @text_block.title
+.content
+  = @text_block.content
+
+= link_to 'Edit', edit_text_block_path(@text_block) |
+= link_to 'Back', text_blocks_path

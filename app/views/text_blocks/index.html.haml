@@ -1,0 +1,16 @@
+%h1 Listing Text_blocks
+
+%table
+  %tr
+    %th Title
+    %th{:colspan => 3} Actions
+
+- for text_block in @text_blocks
+  %tr
+    %td= text_block.title
+    %td= link_to 'Show', text_block
+    %td= link_to 'Add To Page', new_content_path(text_block)
+    %td= link_to 'Edit', edit_text_block_path(text_block)
+    %td= link_to 'Destroy', text_block, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New text_block', new_text_block_path

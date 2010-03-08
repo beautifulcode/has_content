@@ -1,0 +1,6 @@
+%h1 New Text Block
+- semantic_form_for( @text_block, :html => {:multipart => true, :class => 'validate'} ) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  = form.buttons
+%p
+  = link_to 'Cancel', text_blocks_path, :class => 'button cancel', :onclick => "this.up().hide();"

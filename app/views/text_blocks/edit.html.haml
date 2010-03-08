@@ -1,0 +1,7 @@
+%h1 Editing Text block
+- semantic_form_for( @text_block, :html => {:multipart => true, :class => 'validate'} ) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+
+  %p.right
+    = link_to 'Cancel', :back, :class => 'button cancel'
+    = form.submit "Update Text", :class => "button update"

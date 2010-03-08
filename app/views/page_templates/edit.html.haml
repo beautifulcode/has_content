@@ -1,0 +1,9 @@
+%h1 Editing Page template
+
+- form_for(@page_template) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit 'Update'
+
+%p
+  = link_to 'Show', @page_template
+  = link_to 'Back', page_templates_path

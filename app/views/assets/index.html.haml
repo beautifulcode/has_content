@@ -1,0 +1,18 @@
+%h1
+  All
+  = @asset_class.to_s.underscore.humanize.titlecase.pluralize
+%ul
+  - @assets.each do |asset|
+    %li
+      = link_to asset.title, asset
+      |
+      = link_to "Edit", edit_polymorphic_path(asset)
+      |
+      = link_to 'Add To Page', "/#{asset.class.name.tableize}/#{asset.id}/content_mappings/new"
+      |
+      = link_to "Delete", asset, :confirm => "Are you sure?", :method => 'delete'
+  
+%p= link_to "New #{@asset_class.to_s.underscore.humanize.titlecase}", :action => 'new', :prefix => 'admin', :class => 'button create'
+
+.pagination
+  = will_paginate @assets, :params => {:controller => "admin/#{@asset_class.name.tableize}"}

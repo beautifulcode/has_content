@@ -1,0 +1,30 @@
+
+= form.error_messages
+
+
+.content_mapping_details{:style => "#{'height: 0px; overflow:hidden' if params[:page_id] && params[:section_id] && params[:asset_type]}"}
+  - form.inputs do
+    - unless params[:asset_type_id]
+      = form.input :page, :prompt => "Choose a page to add content to:"
+      = form.input :section, :prompt => "Choose a section to add content to:"
+      - unless @asset_type
+        = form.input :asset_type, :as => :select, :prompt => "Choose a type of asset to add:"
+
+- form.inputs do    
+  #asset_form
+    - if @asset
+      = form.hidden_field :asset_id, :value => @asset.id
+      = form.hidden_field :asset_type_id, :value => @asset_type.id
+      - if @asset.new_record?
+        - form.fields_for @asset do |asset_form|
+          = render :partial => "/#{@asset.class.name.tableize}/form", :locals => {:form => asset_form}
+        
+    - else
+      %h3 Please select an asset from above
+
+  :javascript
+    $('content_mapping_asset_type_id').observe('change', function(e){new Ajax.Updater('asset_form', '', {method: 'get', parameters: "asset_type_id="+$F('content_mapping_asset_type_id')+""})});
+
+
+    
+

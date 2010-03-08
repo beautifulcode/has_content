@@ -1,0 +1,47 @@
+
+
+%ul#tabs_page_form.subsection_tabs.group.tabs
+  %li.tab= link_to "Basic Details", "#basic_page_details"
+  %li.tab= link_to "Advanced Options", "#advanced_page_options"
+  %li.tab= link_to "Page Content Management", "#page_content"
+
+#basic_page_details.tab_content.group
+  %h4 These are the basic details that are required to create a new page
+  
+  - form.inputs do
+
+    = form.input :parent, :label => "As a child page of:", :include_blank => false, :label_method => :page_select_value unless @page.root?
+
+    = form.input :title, :label => "With the title:", :hint => "#{content_tag :span, 'Link: '+@page.permalink_path, :class => 'rest_in_place', :attribute => 'permalink', :url => page_path(@page) unless @page.new_record?}"
+
+
+#advanced_page_options.tab_content.group
+
+  - form.inputs do
+    = form.input :page_template, :label => "Using Template:"
+
+  - form.input :permalink
+  
+  - form.inputs :name => 'Search Engine Optimization' do
+    = form.input :file_name
+    = form.input :meta_keywords, :style => 'height: 100px'
+    = form.input :meta_description, :style => 'height: 100px'
+
+  - form.inputs :name => "Redirect Configuration" do
+    = form.input :redirect 
+    = form.input :redirect_url 
+    /= form.input :redirect_page, :include_blank => true
+    = form.input :lightwindow, :label => "Launch Page In Overlay"
+
+#page_content.tab_content.group
+  = render :partial => 'pages/content'
+
+
+:javascript
+  Event.observe(window, 'load', function(){
+    var form_tabs = new Control.Tabs('tabs_page_form');
+    console.log(form_tabs)
+  })
+
+
+

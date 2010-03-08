@@ -1,0 +1,36 @@
+%h1 Listing Content
+%h3= " for #{@page.title} page | #{link_to 'View Page', @page.permalink_path}" if @page
+
+- if @page
+  = render :partial => 'pages/content', :locals => {:page => @page}
+  %p= link_to 'Create Content', new_page_content_mapping_path, :class => 'button create' if @page.content_mappings.empty?
+    
+- else
+  / %ul#content_tabs.tabs
+  /   %li.tab=link_to "All Assets", "#all_assets"
+  /   %li.tab=link_to "All Pages", "#all_pages"
+  #all_assets
+  #all_pages
+    - Page.all.each do |page|
+      - @page = page
+      %h2= page.title
+      = render :partial => 'pages/content', :locals => {:page => page}
+      %p= link_to 'Create Content', new_content_mapping_path, :class => 'button create' if page.content_mappings.empty?
+
+  %p= link_to 'Create Content', new_content_mapping_path, :class => 'button create'
+
+- content_for :side do
+  - if @page
+    = link_to "> View Page", @page.permalink_path
+    = link_to "> Edit Page", edit_page_path(@page)
+    = link_to "> New Content", new_page_content_mapping_path(@page)
+  %br
+  %h3 Assets
+  - AssetType.all.each do |type|
+    = link_to "> #{type.title.pluralize}", "/#{type.title.pluralize.underscore.pluralize}"
+    
+    
+:javascript
+  Event.observe(window, 'load', function(){
+    / var form_tabs = new Control.Tabs('content_tabs');
+  })

@@ -1,0 +1,47 @@
+<script src="/javascripts/swfobject.js" type="text/javascript" charset="utf-8"></script>
+  <%= render :partial => "flash_piece", :locals => {:flash_piece => @flash_piece} %>
+<p>
+  <b>Title:</b>
+  <%=h @flash_piece.title %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @flash_piece.width %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @flash_piece.height %>
+</p>
+
+<p>
+  <b>File:</b>
+  <%= @flash_piece.swf.url %>
+</p>
+
+<p>
+  <b>Alternate Image:</b>
+  <%= link_to @flash_piece.image.url, @flash_piece.image.url, :class => 'lightwindow' %>
+</p>
+
+
+
+<p>
+  <b>Params:</b>
+  <%=h @flash_piece.params %>
+</p>
+
+<p>
+  <b>Flash vars:</b>
+  <%=h @flash_piece.flash_vars %>
+</p>
+
+<p>
+  <b>Version:</b>
+  <%=h @flash_piece.version %>
+</p>
+
+
+<%= link_to 'Edit', edit_flash_piece_path(@flash_piece) %> |
+<%= link_to 'Back', flash_pieces_path %>

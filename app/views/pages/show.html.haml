@@ -1,0 +1,22 @@
+
+- if @page
+
+  - content_for :title do
+    = determine_title_for @page
+
+  -# Run through the available sections
+  - @page.sections.each do |section|   
+
+    -# Yield to the sections via content_for
+    - content_for section.title.downcase.to_sym do
+
+      -# Run through each asset attached to the section
+      - @page.content_for_section(section.title).each do |content|
+
+        - if content.asset_template.blank?
+          -# Use default partial template
+          = render :partial => content.partial 
+        - else
+          -# Use supplied asset template
+          = render :partial => content.partial, :locals => {content.asset_template.split('/').last.to_sym => content.asset}
+                  

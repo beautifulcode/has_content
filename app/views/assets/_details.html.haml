@@ -1,0 +1,22 @@
+%h1 Details
+
+%p
+  %b Usage:
+  = "Image used #{asset.content_mappings.size} time(s)"
+%p
+  %b Pages:
+  - asset.content_mappings.each do |content|
+    = link_to "#{content.page.title}", content.page
+
+%p 
+  %b Created on:
+  %br
+  = asset.created_at.to_s(:long)    
+
+%p 
+  %b Updated on:
+  %br
+  = asset.updated_at.to_s(:long)  
+
+%p
+  %b Previous versions:

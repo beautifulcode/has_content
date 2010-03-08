@@ -1,0 +1,17 @@
+%h1 Images
+= link_to "Create A New Image", new_image_path, :class => 'button create right'
+%h2 Existing Images
+- @images.in_groups_of(5, false) do |image_row|
+  .image_row
+    - image_row.each do |image|
+      .span-3.basic_image_preview
+        = link_to(image_tag(image.file.url(:thumb)), edit_basic_image_path(image), :class => 'lightwindow', :rel=>"Assets[Basic Images]", :title=>"#{image.title} - Click to Edit", :caption=>"#{link_to("Edit", edit_basic_image_path(image))}<br/> Used on: #{image.pages.collect{|p| link_to(p.title, edit_page_path(p))}.join('/')}", :author=>"")
+        %p{ :style => "display: none;" }
+          = link_to "Edit Image", edit_basic_image_path(image)
+          = link_to 'Delete Image', image, :confirm => 'Are you sure?', :method => :delete
+  
+
+%p= will_paginate @images
+.clear
+%br
+%p= link_to "Create A New Image", new_image_path, :class => 'button create' unless @images.empty?

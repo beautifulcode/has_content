@@ -1,0 +1,18 @@
+#available_asset_block.context_block
+  %h3 Available Assets
+  %ul#available_assets
+    - available_asset_types.each do |asset_type|
+      %li.asset_shelf{:id => "asset_type_#{asset_type.id}", :asset_type => asset_type.title}
+        - @plugin_asset_path = "/freightyard"
+        = image_tag @plugin_asset_path + asset_type.icon
+        = asset_type.title.titleize
+        = draggable_element "asset_type_#{asset_type.id}",:ghosting => true, :revert => true
+      %li
+        = link_to_function "Show Existing #{asset_type.title.titleize.pluralize}", "this.next().toggle('slide'); return false;", :style => "color: #777;"
+        %ul.scrollable.asset_tray{:style => "display: none; margin: 0; padding: 0"}
+          - asset_type.title.constantize.all.each do |asset|
+            %li.content.existing_asset{:id => dom_id(asset), :asset_type => asset_type.title, :asset_id => asset.id, :asset_type_id => asset_type.id, :class => asset_type.title.tableize.singularize, :style => "text-align: left; padding-left: 20px; padding-top: 0"}
+              = asset.title
+              = draggable_element dom_id(asset), :ghosting => true, :revert => true
+  %br
+  =link_to "Create New Asset Type", new_asset_type_path, :class => "button create"

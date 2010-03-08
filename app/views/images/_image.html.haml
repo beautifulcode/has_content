@@ -1,0 +1,9 @@
+- asset_tag_for image do
+  - link = image.page.permalink if image.page
+  - link ||= image.link unless image.page && image.link.blank?
+  
+  - unless link.blank?
+    = link_to( image_tag(image.file.url), link, :class => "#{'lightwindow' if image.lightwindow }") 
+  - else
+    = image_tag(image.file.url)
+

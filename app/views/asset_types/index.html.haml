@@ -1,0 +1,16 @@
+%h1 Listing Asset types
+
+%table
+  %tr
+    %th Title
+    %th Active
+
+  - for asset_type in @asset_types
+    %tr
+      %td= h asset_type.title
+      %td= h asset_type.active
+      %td= link_to 'Show', asset_type
+      %td= link_to 'Edit', edit_asset_type_path(asset_type)
+      %td= link_to 'Destroy', asset_type, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New Asset type', new_asset_type_path
